@@ -55,7 +55,7 @@ public class CustomerController {
   }
 
   @GetMapping("/deleteCustomer")
-  public String deleteCustomer(@RequestParam("customerId") String id)
+  public String deleteCustomer(@RequestParam("customerId") String id, Model model)
       throws NumberFormatException, Exception {
     customerDao.deleteCustomer(Integer.parseInt(id));
     return "redirect:list";

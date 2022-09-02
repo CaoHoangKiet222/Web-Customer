@@ -14,6 +14,7 @@
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
             integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <script src="${pageContext.request.contextPath}/resources/js/alert.js"></script>
         </head>
 
         <body>
@@ -59,7 +60,7 @@
                     </td>
                     <td>
                       <a href="${updateLink}" class="btn btn-warning btn-sm delete"><i class="fas fa-edit"></i></a>
-                      <a href="${deleteLink}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i></a>
+                      <a href="${deleteLink}" class="btn btn-danger btn-sm delete" onclick="return deleteAlert();"><i class="fas fa-trash"></i></a>
                     </td>
                   </tr>
                 </c:forEach>

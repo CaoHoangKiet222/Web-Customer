@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -29,7 +30,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
   @Bean
   public MessageSource messageSource() {
     ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
-    resourceBundleMessageSource.setBasename("com.web.resources.messages");
+    resourceBundleMessageSource.setBasename("resources/messages");
     return resourceBundleMessageSource;
+  }
+
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
   }
 }
