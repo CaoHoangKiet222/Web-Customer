@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /** Customer */
 @Entity(name = "Customer")
@@ -17,8 +20,12 @@ public class Customer {
   private int id;
 
   @Column(name = "name", nullable = true, length = 45)
+  @NotNull
+  @Size(min = 1, max = 20, message = "Name must have lenth between 1 and 20")
   private String name;
 
+  @NotNull
+  @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email")
   @Column(name = "email", nullable = true, length = 45)
   private String email;
 

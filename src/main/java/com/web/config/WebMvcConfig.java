@@ -29,7 +29,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
   @Bean
   public MessageSource messageSource() {
     ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
-    resourceBundleMessageSource.setBasename("resources/messages");
+    resourceBundleMessageSource.setBasename("com.web.resources.messages");
     return resourceBundleMessageSource;
   }
 }

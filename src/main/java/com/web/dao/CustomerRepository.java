@@ -27,4 +27,22 @@ public class CustomerRepository implements CustomerDao {
     List<Customer> customers = query.getResultList();
     return customers;
   }
+
+  @Override
+  @Transactional
+  public void saveCustomer(Customer customer) {
+    final Session session = sessionFactory.getCurrentSession();
+    session.save(customer);
+  }
+
+  @Override
+  @Transactional
+  public void deleteCustomer(int id) throws Exception {
+    final Session session = sessionFactory.getCurrentSession();
+    Customer customer = session.get(Customer.class, id);
+    if (customer == null) {
+      throw new Exception("Employee not found");
+    }
+    session.delete(customer);
+  }
 }
