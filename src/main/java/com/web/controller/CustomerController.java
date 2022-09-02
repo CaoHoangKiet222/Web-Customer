@@ -47,6 +47,13 @@ public class CustomerController {
     return "redirect:list"; // redirect to /customer/list
   }
 
+  @GetMapping("/updateCustomer")
+  public String updateCustomer(@RequestParam("customerId") String id, Model model)
+      throws NumberFormatException, Exception {
+    model.addAttribute("customer", customerDao.getCustomer(Integer.parseInt(id)));
+    return "update-customer";
+  }
+
   @GetMapping("/deleteCustomer")
   public String deleteCustomer(@RequestParam("customerId") String id)
       throws NumberFormatException, Exception {

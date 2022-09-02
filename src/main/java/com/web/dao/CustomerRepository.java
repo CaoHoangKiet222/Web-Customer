@@ -32,7 +32,18 @@ public class CustomerRepository implements CustomerDao {
   @Transactional
   public void saveCustomer(Customer customer) {
     final Session session = sessionFactory.getCurrentSession();
-    session.save(customer);
+    session.saveOrUpdate(customer);
+  }
+
+  @Override
+  @Transactional
+  public Customer getCustomer(int id) throws Exception {
+    Session session = sessionFactory.getCurrentSession();
+    Customer customer = session.get(Customer.class, id);
+    if (customer == null) {
+      throw new Exception("Customer not found");
+    }
+    return customer;
   }
 
   @Override

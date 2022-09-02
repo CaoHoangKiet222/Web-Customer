@@ -9,5 +9,7 @@ public interface CustomerDao {
 
   public void saveCustomer(Customer customer);
 
+  public Customer getCustomer(int id) throws Exception;
+
   public void deleteCustomer(int id) throws Exception;
 }

@@ -58,8 +58,8 @@
                       <c:out value="${entry.email}" />
                     </td>
                     <td>
-                      <a href="${updateLink}" class="btn btn-danger btn-sm delete"><i class="fas fa-refresh"></i></a>
-                      <a href="${deleteLink}" class="btn btn-danger btn-sm delete">X</a>
+                      <a href="${updateLink}" class="btn btn-warning btn-sm delete"><i class="fas fa-edit"></i></a>
+                      <a href="${deleteLink}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i></a>
                     </td>
                   </tr>
                 </c:forEach>
