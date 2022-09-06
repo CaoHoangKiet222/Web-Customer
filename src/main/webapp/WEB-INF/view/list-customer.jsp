@@ -61,7 +61,8 @@
                     <td>
                       <a href="${updateLink}" class="btn btn-warning btn-sm delete"><i class="fas fa-edit"></i></a>
                       <!-- https://stackoverflow.com/questions/14867558/including-both-href-and-onclick-to-html-a-tag -->
-                      <a href="${deleteLink}" class="btn btn-danger btn-sm delete" onclick="return deleteAlert();"><i class="fas fa-trash"></i></a>
+                      <a href="${deleteLink}" class="btn btn-danger btn-sm delete" onclick="return deleteAlert();"><i
+                          class="fas fa-trash"></i></a>
                     </td>
                   </tr>
                 </c:forEach>

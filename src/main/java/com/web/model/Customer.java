@@ -21,11 +21,11 @@ public class Customer {
 
   @Column(name = "name", nullable = true, length = 45)
   @NotNull
-  @Size(min = 1, max = 20, message = "Name must have lenth between 1 and 20")
+  @Size(min = 1, max = 20)
   private String name;
 
   @NotNull
-  @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "Invalid Email")
+  @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
   @Column(name = "email", nullable = true, length = 45)
   private String email;
 

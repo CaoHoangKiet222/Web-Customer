@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+// https://javarevisited.blogspot.com/2017/11/difference-between-component-service.html
+
 /** CustomerRepository */
 // -> sub class of @Component, use for DAO implementation (auto-scan)
 // -> provides translation of any JDBC related exceptions means any checked exceptions, Spring will
