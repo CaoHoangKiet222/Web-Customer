@@ -10,9 +10,35 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
-CREATE TABLE user (
-  id INT(11) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS user;
 
-);
+CREATE TABLE
+    user (
+        id INT(11) NOT NULL AUTO_INCREMENT,
+        name VARCHAR(128) NOT NULL,
+        password VARCHAR(128) NOT NULL,
+        active BOOLEAN NOT NULL,
+        roles VARCHAR(128) NOT NULL,
+        PRIMARY KEY(id),
+        CONSTRAINT Name_UNI UNIQUE (name)
+    );
+
+INSERT INTO
+    `user`(name, password, active, roles)
+VALUES (
+        'locle',
+        'thangcho',
+        1,
+        'ROLE_USER'
+    );
+
+INSERT INTO
+    `user`(name, password, active, roles)
+VALUES (
+        'admin',
+        'admin',
+        1,
+        'ROLE_ADMIN'
+    );
 
 SELECT * FROM customer;
