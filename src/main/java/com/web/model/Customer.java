@@ -19,14 +19,14 @@ public class Customer {
   @Column(name = "id", nullable = false, length = 11, unique = true)
   private int id;
 
-  @Column(name = "name", nullable = true, length = 45)
+  @Column(name = "name", nullable = false, length = 45)
   @NotNull
   @Size(min = 1, max = 20)
   private String name;
 
   @NotNull
   @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
-  @Column(name = "email", nullable = true, length = 45)
+  @Column(name = "email", nullable = false, length = 45)
   private String email;
 
   public Customer() {}
