@@ -14,10 +14,11 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
               integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
               crossorigin="anonymous" referrerpolicy="no-referrer" />
-            <script src="${pageContext.request.contextPath}/resources/js/alert.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
           </head>
 
           <body>
+          <form:form method="POST" action="${pageContext.request.contextPath}/logout" id="logout">
             <div class="container mt-4">
               <h1 class="display-4 text-center">
                 <i class="fas fa-book-open text-primary"></i> <span class="text-primary">Customer</span> List
@@ -26,11 +27,13 @@
                 <div class="card-body">
                   <h3 class="card-title text-center text-info">Welcome: ${userName}</h3>
                   <p class="card-text text-center">Webpage displays all customers.</p>
+                  <p class="card-text text-center">If you want to logout, <a href="#" class="card-link" onclick={logout();}>click here</a></p>
                 </div>
               </div>
               <a href="<c:url value=" newCustomerForm" />">
-              <button type="button" class="btn btn-primary">Add Customer</button>
+                <button type="button" class="btn btn-primary">Add Customer</button>
               </a>
+
               <table class="table table-striped mt-4">
                 <thead>
                   <tr>
@@ -69,6 +72,7 @@
                 </tbody>
               </table>
             </div>
+          </form:form>
           </body>
 
           </html>

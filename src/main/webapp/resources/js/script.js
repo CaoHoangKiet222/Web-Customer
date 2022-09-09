@@ -3,3 +3,7 @@ const deleteAlert = () => {
     return false;
   }
 };
+
+const logout = () => {
+  document.getElementById("logout").submit();
+};

@@ -24,6 +24,11 @@ public class CustomerController {
   @Qualifier("customerRepository")
   private CustomerDao customerDao;
 
+  @GetMapping("/")
+  public String homeCustomer() {
+    return "redirect:/list";
+  }
+
   @GetMapping("/list")
   public String showCustomers(@AuthenticationPrincipal MyUserDetail myUserDetail, Model model) {
     model.addAttribute("userName", myUserDetail.getUsername());

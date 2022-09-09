@@ -22,6 +22,9 @@ public class LogginController {
       }
       return "redirect:customer/list";
     }
+    // if use "redirect:login" -> don't use these
+    // .antMatchers("/**")
+    // .authenticated()
     return "redirect:login";
   }
 
