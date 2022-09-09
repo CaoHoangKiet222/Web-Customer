@@ -16,6 +16,7 @@ CREATE TABLE
     user (
         id INT(11) NOT NULL AUTO_INCREMENT,
         name VARCHAR(128) NOT NULL,
+        -- password must be at least 68 bytes
         password VARCHAR(128) NOT NULL,
         active BOOLEAN NOT NULL,
         roles VARCHAR(128) NOT NULL,
@@ -23,22 +24,6 @@ CREATE TABLE
         CONSTRAINT Name_UNI UNIQUE (name)
     );
 
-INSERT INTO
-    `user`(name, password, active, roles)
-VALUES (
-        'locle',
-        'thangcho',
-        1,
-        'ROLE_USER'
-    );
-
-INSERT INTO
-    `user`(name, password, active, roles)
-VALUES (
-        'admin',
-        'admin',
-        1,
-        'ROLE_ADMIN'
-    );
+INSERT INTO `user`(name,password,active,roles) VALUES('ttq','$2a$10$Wt.JJTMLZinuriked/lcOepNwIC3Vj7p8g1DT5wq1s84qQAVMzLRC',1,'ROLE_EDITOR');
 
 SELECT * FROM customer;

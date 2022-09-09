@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -18,30 +18,40 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-  @Autowired
-  UserDetailsService userDetailsService;
+  @Autowired UserDetailsService userDetailsService;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    // https://www.baeldung.com/spring-security-expressions
     http.authorizeRequests()
-        .antMatchers("/customer/**")
-        .hasAnyRole("USER", "CUSTOMER")
+        // filter from top to down
+        .antMatchers("/customer/list")
+        .hasAnyRole("USER", "ADMIN", "CREATOR", "EDITOR")
+        .antMatchers("/customer/newCustomerForm")
+        .hasAnyRole("CREATOR", "ADMIN")
+        .antMatchers("/customer/updateCustomer")
+        .hasAnyRole("EDITOR", "ADMIN")
+        .antMatchers("/customer/deleteCustomer")
+        .hasRole("ADMIN")
         .antMatchers("/admin/**")
         .hasRole("ADMIN")
         .and()
-        .formLogin();
+        .formLogin()
+        .permitAll()
+        .and()
+        .exceptionHandling()
+        .accessDeniedPage("/access-denied/403");
     return http.build();
   }
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-    // return new BCryptPasswordEncoder();
-    return NoOpPasswordEncoder.getInstance();
+    // https://www.codejava.net/frameworks/spring-boot/spring-security-without-password-encoding
+    return new BCryptPasswordEncoder();
   }
 
-  // @Bean
-  // public WebSecurityCustomizer webSecurityCustomizer() {
-  // return (web) -> web.ignoring().antMatchers("/images/**", "/js/**",
-  // "/webjars/**");
-  // }
+  @Bean
+  public WebSecurityCustomizer webSecurityCustomizer() {
+    return (web) -> web.ignoring().antMatchers("/resources/**");
+  }
 }

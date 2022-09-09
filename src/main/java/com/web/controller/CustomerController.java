@@ -2,9 +2,11 @@ package com.web.controller;
 
 import com.web.dao.CustomerDao;
 import com.web.model.Customer;
+import com.web.service.MyUserDetail;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +25,8 @@ public class CustomerController {
   private CustomerDao customerDao;
 
   @GetMapping("/list")
-  public String showCustomers(Model model) {
+  public String showCustomers(@AuthenticationPrincipal MyUserDetail myUserDetail, Model model) {
+    model.addAttribute("userName", myUserDetail.getUsername());
     model.addAttribute("customers", customerDao.getCustomers());
     return "list-customer";
   }

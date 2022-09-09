@@ -22,6 +22,7 @@ public class User {
   private String name;
 
   @NotNull
+  //  password with bcrypt must be at least 68 bytes
   @Column(name = "password", nullable = false, length = 128)
   private String password;
 
