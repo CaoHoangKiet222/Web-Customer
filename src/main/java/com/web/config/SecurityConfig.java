@@ -23,9 +23,15 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     // https://www.baeldung.com/spring-security-expressions
-    http.authorizeRequests()
+    http.httpBasic()
+        .and()
+        .cors()
+        .disable()
+        .csrf()
+        .disable()
+        .authorizeRequests()
         // filter from top to down
-        .antMatchers("/customer/list")
+        .antMatchers("/customer/list", "/api/customers")
         .hasAnyRole("USER", "ADMIN", "CREATOR", "EDITOR")
         .antMatchers("/customer/newCustomerForm")
         .hasAnyRole("CREATOR", "ADMIN")
@@ -33,7 +39,7 @@ public class SecurityConfig {
         .hasAnyRole("EDITOR", "ADMIN")
         .antMatchers("/customer/deleteCustomer")
         .hasRole("ADMIN")
-        .antMatchers("/admin/home")
+        .antMatchers("/idmin/home")
         .hasRole("ADMIN")
         .antMatchers("/**")
         .authenticated()

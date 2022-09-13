@@ -1,5 +1,6 @@
 package com.web.dao;
 
+import com.web.error.CustomerNotFoundException;
 import com.web.model.Customer;
 import java.util.List;
 import org.hibernate.Session;
@@ -39,23 +40,24 @@ public class CustomerRepository implements CustomerDao {
 
   @Override
   @Transactional
-  public Customer getCustomer(int id) throws Exception {
+  public Customer getCustomer(int id) throws RuntimeException {
     Session session = sessionFactory.getCurrentSession();
     Customer customer = session.get(Customer.class, id);
     if (customer == null) {
-      throw new Exception("Customer not found");
+      throw new CustomerNotFoundException("Customer not found");
     }
     return customer;
   }
 
   @Override
   @Transactional
-  public void deleteCustomer(int id) throws Exception {
+  public Customer deleteCustomer(int id) throws RuntimeException {
     final Session session = sessionFactory.getCurrentSession();
     Customer customer = session.get(Customer.class, id);
     if (customer == null) {
-      throw new Exception("Employee not found");
+      throw new CustomerNotFoundException("Customer not found");
     }
     session.delete(customer);
+    return customer;
   }
 }

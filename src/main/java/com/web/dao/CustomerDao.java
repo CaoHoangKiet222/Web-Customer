@@ -9,7 +9,7 @@ public interface CustomerDao {
 
   public void saveCustomer(Customer customer);
 
-  public Customer getCustomer(int id) throws Exception;
+  public Customer getCustomer(int id) throws RuntimeException;
 
-  public void deleteCustomer(int id) throws Exception;
+  public Customer deleteCustomer(int id) throws RuntimeException;
 }
